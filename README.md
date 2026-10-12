@@ -1,55 +1,52 @@
-# 📝 Todo List - Gerenciador de Tarefas em React
+# 📝 Gerenciador de Tarefas Avançado (React + Vite + Tailwind CSS)
 
-Uma aplicação front-end moderna e responsiva para gerenciamento de tarefas (Todo List), desenvolvida com **React**, **Vite** e **Tailwind CSS**. O projeto demonstra a aplicação prática de componentes reutilizáveis, gerenciamento de estado avançado com hooks (`useState`, `useEffect`) e persistência de dados.
+Aplicação Web para gerenciamento de tarefas desenvolvida em **React**, focada na implementação de conceitos avançados como **Context API**, **Custom Hooks**, técnicas de **Memoização (`useMemo`, `useCallback`, `memo`)** e estilização com **Tailwind CSS**.
 
----
-
-## 🚀 Demonstração & Funcionalidades
-
-- **Gerenciamento de Tarefas:** Adição, edição inline, exclusão e alternância de status (concluída/pendente).
-- **Categorização por Prioridade:** Níveis de prioridade (Baixa, Média e Alta) com marcadores visuais.
-- **Filtros e Busca Dinâmica:**
-  - Filtragem por status: *Todas*, *Pendentes* e *Concluídas*.
-  - Busca por palavra-chave em tempo real.
-- **Painel de Métricas:** Barra de progresso dinâmica e contadores de tarefas concluídas/totais.
-- **Persistência de Dados:** Armazenamento automático no `localStorage` do navegador via `useEffect`.
-- **Design Responsivo:** Layout fluido e adaptável para dispositivos móveis, tablets e desktops com Tailwind CSS.
+🔗 **Demonstração Online:** [https://GabrielAlb155.github.io/todo-react-avancado/](https://GabrielAlb155.github.io/todo-react-avancado/)
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## 🚀 Recursos e Funcionalidades
 
-- **[React](https://react.dev/):** Biblioteca principal para construção da interface declarativa em componentes.
-- **[Vite](https://vitejs.dev/):** Ferramenta de build rápida e ambiente de desenvolvimento.
-- **[Tailwind CSS](https://tailwindcss.com/):** Framework utilitário de CSS para estilização moderna e responsiva.
-- **[JavaScript (ES6+)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript):** Manipulação de arrays, métodos imutáveis (`map`, `filter`) e arrow functions.
+- 📌 **Gerenciamento Completo de Tarefas:** Adicionar, editar, concluir e remover tarefas.
+- 🎯 **Nível de Prioridade:** Classificação de tarefas em prioridade Alta, Média e Baixa.
+- 🔍 **Busca e Filtragem:** Pesquisa em tempo real por título e filtros por status (*Todas*, *Pendentes*, *Concluídas*).
+- 📊 **Estatísticas Avançadas:** Métricas calculadas dinamicamente com indicador visual de progresso (barra de progresso).
+- 💾 **Persistência de Dados:** Armazenamento automático no `localStorage` do navegador.
+- 📱 **Interface Responsiva:** Design adaptável para dispositivos móveis e desktops construído com Tailwind CSS.
 
 ---
 
-## 🧩 Recursos e Hooks do React Aplicados
+## 🛠️ Tecnologias e Conceitos Avançados Utilizados
 
-1. **`useState`:** 
-   - Gerenciamento do estado central de tarefas (array de objetos).
-   - Controle do formulário (inputs de texto e prioridade).
-   - Controle de estados de filtro, busca e modo de edição inline.
-2. **`useEffect`:** 
-   - Sincronização e persistência automática do estado de tarefas no `localStorage` a cada alteração.
-3. **Props & Comunicação entre Componentes:**
-   - Elevação de estado (*Lifting State Up*) e passagem de callbacks (`onAddTodo`, `onToggle`, `onDelete`, `onEdit`) para manter o fluxo unidirecional de dados.
-4. **Renderização Condicional e de Listas:**
-   - Renderização dinâmica de itens com `.map()` e uso de `key` única baseada em timestamp (`Date.now()`).
+- **React (Vite)** — Bootstrapping e estrutura da aplicação.
+- **Context API (`TodoContext`)** — Gerenciamento de estado global descentralizado, eliminando *prop drilling*.
+- **Custom Hook (`useTodos`)** — Encapsulamento da lógica de acesso e validação do contexto das tarefas.
+- **Memoização (`useMemo`)** — Otimização no cálculo das estatísticas e na filtragem/busca de tarefas para evitar re-computações desnecessárias.
+- **Funções Memoizadas (`useCallback`)** — Estabilização das referências das funções de manipulação de estado (`addTodo`, `removeTodo`, `completeTodo`, `editTodo`).
+- **Componentes Memoizados (`memo`)** — Prevenção de re-renderizações desnecessárias em `TodoItem`.
+- **Tailwind CSS (`@tailwindcss/vite`)** — Estilização utilitária e responsiva.
+- **GitHub Pages (`gh-pages`)** — Automação do deploy e hospedagem estática.
 
 ---
 
 ## 📁 Estrutura do Projeto
 
 ```text
-src/
-├── components/
-│   ├── TodoFilter.jsx   # Componente de filtros por status e busca
-│   ├── TodoForm.jsx     # Formulário controlado para cadastro de tarefas
-│   ├── TodoItem.jsx     # Item individual da lista com edição e exclusão
-│   └── TodoStats.jsx    # Painel com estatísticas e barra de progresso
-├── App.jsx              # Componente principal / Gerenciamento de estado global
-├── index.css            # Configuração das diretivas do Tailwind CSS
-└── main.jsx             # Ponto de entrada da aplicação React
+catalogo-produtos/
+├── public/
+├── src/
+│   ├── components/
+│   │   ├── TodoFilter.jsx   # Filtros por status e busca
+│   │   ├── TodoForm.jsx     # Formulário de criação de tarefas
+│   │   ├── TodoItem.jsx     # Item individual da lista (memoizado)
+│   │   ├── TodoList.jsx     # Lista container de tarefas
+│   │   └── TodoStats.jsx    # Painel de métricas e progresso
+│   ├── context/
+│   │   └── TodoContext.jsx  # Contexto, Provider e Hook useTodos
+│   ├── App.jsx              # Componente raiz encapsulado pelo Provider
+│   ├── main.jsx             # Ponto de entrada do React
+│   └── index.css            # Estilos globais e Tailwind CSS
+├── eslint.config.js         # Configurações do ESLint e Fast Refresh
+├── vite.config.js           # Configurações do Vite (base path e plugins)
+└── package.json             # Dependências e scripts do projeto

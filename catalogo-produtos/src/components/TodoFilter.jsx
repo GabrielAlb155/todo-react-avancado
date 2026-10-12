@@ -1,28 +1,29 @@
-export default function TodoFilter({ filtroStatus, setFiltroStatus, busca, setBusca }) {
+import { useTodos } from '../context/TodoContext';
+
+export default function TodoFilter() {
+  const { filter, setFilter, search, setSearch } = useTodos();
+
   return (
-    <div className="bg-white p-4 rounded-xl shadow-md border border-gray-100 mb-6 flex flex-col sm:flex-row gap-4 justify-between items-center">
-      {/* Busca */}
+    <div className="flex flex-col sm:flex-row gap-3 mb-4 justify-between">
       <input
         type="text"
-        value={busca}
-        onChange={(e) => setBusca(e.target.value)}
-        placeholder="Buscar tarefas..."
-        className="w-full sm:w-64 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+        placeholder="Buscar tarefa..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        className="border border-gray-300 p-2 rounded text-sm flex-1 text-gray-800"
       />
-
-      {/* Botões de Filtro */}
-      <div className="flex gap-2 w-full sm:w-auto justify-center">
-        {["todas", "pendentes", "concluidas"].map((status) => (
+      <div className="flex gap-1 bg-gray-200 p-1 rounded">
+        {['todas', 'pendentes', 'concluidas'].map((f) => (
           <button
-            key={status}
-            onClick={() => setFiltroStatus(status)}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium capitalize transition-colors cursor-pointer ${
-              filtroStatus === status
-                ? "bg-emerald-600 text-white"
-                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+            key={f}
+            onClick={() => setFilter(f)}
+            className={`px-3 py-1 text-xs rounded capitalize font-medium ${
+              filter === f
+                ? 'bg-white text-blue-600 shadow-sm'
+                : 'text-gray-600 hover:text-gray-900'
             }`}
           >
-            {status}
+            {f}
           </button>
         ))}
       </div>
